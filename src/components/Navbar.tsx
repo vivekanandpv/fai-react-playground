@@ -15,6 +15,9 @@ const Navbar: React.FunctionComponent<NavbarProps> = (props) => {
       <NavLink to='/contact' exact>
         <span className='mx-2'>Contact</span>
       </NavLink>
+      <NavLink to='/login' exact>
+        <span className='mx-2'>Login</span>
+      </NavLink>
     </>
   );
 };

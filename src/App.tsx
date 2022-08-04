@@ -7,6 +7,7 @@ const Home = React.lazy(() => import('./components/Home'));
 const About = React.lazy(() => import('./components/About'));
 const Contact = React.lazy(() => import('./components/Contact'));
 const NotFound = React.lazy(() => import('./components/NotFound'));
+const LoginForm = React.lazy(() => import('./components/LoginForm'));
 
 interface AppProps {}
 
@@ -25,6 +26,7 @@ const App: React.FunctionComponent<AppProps> = (props) => {
               <Redirect from='/' to='/home' exact />
               <Route path='/about/:message' exact component={About} />
               <Route path='/contact' exact component={Contact} />
+              <Route path='/login' exact component={LoginForm} />
               <Route component={NotFound} />
             </Switch>
           </React.Suspense>
