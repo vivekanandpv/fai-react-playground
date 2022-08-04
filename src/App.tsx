@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 
-function App() {
+import Navbar from './components/Navbar';
+
+const Home = React.lazy(() => import('./components/Home'));
+const About = React.lazy(() => import('./components/About'));
+const Contact = React.lazy(() => import('./components/Contact'));
+const NotFound = React.lazy(() => import('./components/NotFound'));
+
+interface AppProps {}
+
+const App: React.FunctionComponent<AppProps> = (props) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className='container p-5'>
+        <h3>App Component</h3>
+        <hr />
+        <BrowserRouter>
+          <Navbar />
+          <hr />
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <Switch>
+              <Route path='/home' exact component={Home} />
+              <Redirect from='/' to='/home' exact />
+              <Route path='/about/:message' exact component={About} />
+              <Route path='/contact' exact component={Contact} />
+              <Route component={NotFound} />
+            </Switch>
+          </React.Suspense>
+        </BrowserRouter>
+      </div>
+    </>
   );
-}
+};
 
 export default App;
